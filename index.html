@@ -1,44 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>About YOU</title>
+  <title>Fun Quiz!</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 50px;
+      background: #f0f0f0;
+      transition: background 0.5s;
     }
-    button {
+    .quiz-option {
       padding: 10px 20px;
-      font-size: 18px;
+      margin: 10px;
+      font-size: 16px;
       cursor: pointer;
-      margin-top: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
     }
-    iframe {
-      margin-top: 20px;
+    #rickRoll {
       display: none;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Congrats, you visited this page!</h1>
-  <p>Now… you are gay 😏</p>
+  <h1>Quick Quiz!</h1>
+  <p>Which one do you think describes you best?</p>
 
-  <button id="notGayBtn">I'm not gay</button>
+  <button class="quiz-option">Option 1</button>
+  <button class="quiz-option">Option 2</button>
+  <button class="quiz-option">Option 3</button>
 
-  <iframe id="rickRoll" width="560" height="315" 
-    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+  <iframe id="rickRoll" width="560" height="315"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
     frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
   </iframe>
 
   <script>
-    const button = document.getElementById('notGayBtn');
+    const buttons = document.querySelectorAll('.quiz-option');
     const video = document.getElementById('rickRoll');
+    const body = document.body;
 
-    button.addEventListener('click', () => {
-      video.style.display = 'block'; // Show Rickroll
-      alert("Get click baited! 😂");  // Pop-up message
-      button.style.display = 'none'; // Hide button after click
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Change the page to look like something serious
+        body.style.background = "#111";
+        body.style.color = "#fff";
+        body.innerHTML = "<h1>Calculating results...</h1>";
+
+        // Fake suspense timer
+        setTimeout(() => {
+          body.innerHTML = ""; // Clear everything
+          video.style.display = "block"; // Show rickroll
+          body.appendChild(video);
+          alert("Get click baited! 😂");
+        }, 2000); // 2 seconds suspense
+      });
     });
   </script>
 </body>
